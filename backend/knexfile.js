@@ -4,7 +4,7 @@ const {
   DEVELOPMENT_DATABASE_URL,
   PRODUCTION_DATABASE_URL,
 } = process.env;
-const DATABASE_URL =
+const URL =
   NODE_ENV === "production"
     ? PRODUCTION_DATABASE_URL
     : DEVELOPMENT_DATABASE_URL;
@@ -12,23 +12,23 @@ const DATABASE_URL =
 module.exports = {
   development: {
     client: "postgresql",
-    connection: DATABASE_URL,
+    connection: URL,
     migrations: {
-      directory: __dirname + "/src/db/migrations",
+      directory: __dirname + "/db/migrations",
     },
     seeds: {
-      directory: __dirname + "/src/db/seeds",
+      directory: __dirname + "/db/seeds",
     },
   },
 
   production: {
     client: "postgresql",
-    connection: DATABASE_URL,
+    connection: URL,
     migrations: {
-      directory: __dirname + "/src/db/migrations",
+      directory: __dirname + "/db/migrations",
     },
     seeds: {
-      directory: __dirname + "/src/db/seeds",
+      directory: __dirname + "/db/seeds",
     },
   },
 };
