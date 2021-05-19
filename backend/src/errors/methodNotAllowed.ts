@@ -5,4 +5,4 @@ function methodNotAllowed(req: any, res: any, next: any) {
   });
 }
 
-export default methodNotAllowed;
+module.exports = methodNotAllowed;

@@ -1,3 +1,4 @@
+export {};
 require("dotenv").config();
 require("ts-node/register");
 const {
@@ -5,7 +6,7 @@ const {
   DEVELOPMENT_DATABASE_URL,
   PRODUCTION_DATABASE_URL,
 } = process.env;
-console.log(DEVELOPMENT_DATABASE_URL);
+
 const DATABASE_URL =
   NODE_ENV === "production"
     ? PRODUCTION_DATABASE_URL
@@ -16,10 +17,10 @@ module.exports = {
     client: "postgresql",
     connection: DATABASE_URL,
     migrations: {
-      directory: __dirname + "/db/migrations",
+      directory: __dirname + "/src/db/migrations",
     },
     seeds: {
-      directory: __dirname + "/db/seeds",
+      directory: __dirname + "/src/db/seeds",
     },
   },
 
@@ -27,10 +28,10 @@ module.exports = {
     client: "postgresql",
     connection: DATABASE_URL,
     migrations: {
-      directory: __dirname + "/db/migrations",
+      directory: __dirname + "/src/db/migrations",
     },
     seeds: {
-      directory: __dirname + "/db/seeds",
+      directory: __dirname + "/src/db/seeds",
     },
   },
 };
