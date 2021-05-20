@@ -2,11 +2,11 @@
   "name": "backend",
   "version": "1.0.0",
   "description": "",
-  "main": "build/app.js",
+  "main": "build/src.server.js",
   "scripts": {
     "build": "tsc",
     "prestart": "npm run build",
-    "start": "node build/server.js",
+    "start": "node build/src/server.js",
     "migrate": "knex migrate:latest --knexfile ./knexfile.ts",
     "seed": "knex seed:run --knexfile ./knexfile.ts",
     "dev": "ts-node-dev --poll --no-notify src/server.ts",

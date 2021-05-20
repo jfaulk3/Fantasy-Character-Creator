@@ -2,7 +2,7 @@ import { Knex } from "knex";
 
 export async function seed(knex: Knex): Promise<any> {
   // Deletes ALL existing entries
-  await knex("users").del();
+  await knex.raw("TRUNCATE TABLE users RESTART IDENTITY CASCADE");
 
   // Inserts seed entries
   await knex("users").insert([
