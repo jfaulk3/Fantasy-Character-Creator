@@ -1,8 +1,7 @@
-import { nextTick } from "process";
-
 const asyncErrorBoundary = require("../errors/asyncErrorBoundary");
 const bcrypt = require("bcrypt");
 const jwtGenerator = require("../utils/jwtGenerator");
+const authorization = require("../middleware/authorization");
 const service = require("./auth.service");
 
 async function isEmailNew(req: any, res: any, next: any) {
@@ -52,8 +51,16 @@ async function login(req: any, res: any, next: any) {
   res.json({ token });
 }
 
+async function isVerified(req: any, res: any) {
+  res.json(true);
+}
+
 module.exports = {
   create: [asyncErrorBoundary(isEmailNew), asyncErrorBoundary(create)],
-  login: asyncErrorBoundary(login),
+  login: [asyncErrorBoundary(login)],
+  isVerified: [
+    asyncErrorBoundary(authorization),
+    asyncErrorBoundary(isVerified),
+  ],
 };
 export {};
