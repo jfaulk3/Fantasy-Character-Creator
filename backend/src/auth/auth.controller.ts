@@ -6,10 +6,10 @@ const service = require("./auth.service");
 
 async function isEmailNew(req: any, res: any, next: any) {
   const { email } = req.body.data;
-  const findEmail = await service.readEmail(email);
+  const findEmail = await service.readEmail(email.toLowerCase());
 
   if (findEmail) {
-    next({ status: 401, message: `Email is already registered: ${email}` });
+    return res.status(401).json("User already exist");
   }
   next();
 }
@@ -24,7 +24,7 @@ async function create(req: any, res: any) {
   const saltRound = 10;
   const salt = await bcrypt.genSalt(saltRound);
   const bcryptPassword: string = await bcrypt.hash(password, salt);
-  const data = await service.create(name, email, bcryptPassword);
+  const data = await service.create(name, email.toLowerCase(), bcryptPassword);
 
   const token = jwtGenerator(data.user_id);
 
@@ -38,29 +38,26 @@ async function login(req: any, res: any, next: any) {
   //Check if user doesn't exist (if not then throw error)
   const findUser = await service.readEmail(email);
   if (!findUser) {
-    return next({ status: 401, message: `Password or Email is incorrect` });
+    return res.status(401).json("Password or Email is incorrect");
   }
   //Check if incoming password is the same as the database password
   const validPassword = await bcrypt.compare(password, findUser.user_password);
 
   if (!validPassword) {
-    return next({ status: 401, message: `Password or Email is incorrect` });
+    return res.status(401).json("Password or Email is incorrect");
   }
   //Give the jwt token
   const token = jwtGenerator(findUser.user_id);
   res.json({ token });
 }
 
-async function isVerified(req: any, res: any) {
+function isVerified(req: any, res: any) {
   res.json(true);
 }
 
 module.exports = {
   create: [asyncErrorBoundary(isEmailNew), asyncErrorBoundary(create)],
   login: [asyncErrorBoundary(login)],
-  isVerified: [
-    asyncErrorBoundary(authorization),
-    asyncErrorBoundary(isVerified),
-  ],
+  isVerified: [asyncErrorBoundary(authorization, 403), isVerified],
 };
 export {};
