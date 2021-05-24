@@ -38,13 +38,13 @@ async function login(req: any, res: any, next: any) {
   //Check if user doesn't exist (if not then throw error)
   const findUser = await service.readEmail(email);
   if (!findUser) {
-    return res.status(401).json("Password or Email is incorrect");
+    return res.status(401).json("Email is not registered.");
   }
   //Check if incoming password is the same as the database password
   const validPassword = await bcrypt.compare(password, findUser.user_password);
 
   if (!validPassword) {
-    return res.status(401).json("Password or Email is incorrect");
+    return res.status(401).json("Password is incorrect");
   }
   //Give the jwt token
   const token = jwtGenerator(findUser.user_id);

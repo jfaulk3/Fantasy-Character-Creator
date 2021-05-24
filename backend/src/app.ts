@@ -2,10 +2,16 @@ require("dotenv").config();
 const cors = require("cors");
 const morgan = require("morgan");
 const express = require("express");
+
+//Error middleware
 const notFound = require("./errors/notFound");
 const errorHandler = require("./errors/errorHandler");
+
+//Routers
 const authRouter = require("./auth/auth.router");
 const dashboardRouter = require("./dashboard/dashboard.router");
+const charactersRouter = require("./characters/characters.router");
+
 const app = express();
 
 app.use(cors());
@@ -18,6 +24,7 @@ app.use("/ping", (_request: any, response: any, _next: any) => {
 
 app.use("/auth", authRouter);
 app.use("/dashboard", dashboardRouter);
+app.use("/characters", charactersRouter);
 app.use(notFound);
 app.use(errorHandler);
 

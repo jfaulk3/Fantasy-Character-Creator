@@ -1,0 +1,21 @@
+{
+  "name": "character-creation-application",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:server": "cd backend && npm start",
+    "start:client": "cd client && npm start"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jfaulk3/character-story-application.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jfaulk3/character-story-application/issues"
+  },
+  "homepage": "https://github.com/jfaulk3/character-story-application#readme"
+}

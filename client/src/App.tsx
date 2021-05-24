@@ -12,6 +12,7 @@ import {
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
+import Home from "./components/Home";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -44,6 +45,13 @@ function App() {
       <ToastContainer />
       <div className="container">
         <Switch>
+          <Route
+            exact
+            path="/"
+            render={(props) =>
+              !isAuthenticated ? <Home /> : <Redirect to="/dashboard" />
+            }
+          />
           <Route
             exact
             path="/login"
