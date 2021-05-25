@@ -7,6 +7,7 @@ import {
   Route,
   Redirect,
 } from "react-router-dom";
+import "./App.scss";
 
 //components
 import Dashboard from "./components/Dashboard";
@@ -44,14 +45,8 @@ function App() {
     <Router>
       <ToastContainer />
       <div className="container">
+        <Home />
         <Switch>
-          <Route
-            exact
-            path="/"
-            render={(props) =>
-              !isAuthenticated ? <Home /> : <Redirect to="/dashboard" />
-            }
-          />
           <Route
             exact
             path="/login"
