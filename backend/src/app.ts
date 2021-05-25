@@ -4,6 +4,7 @@ const morgan = require("morgan");
 const express = require("express");
 
 //Error middleware
+const authorization = require("./middleware/authorization");
 const notFound = require("./errors/notFound");
 const errorHandler = require("./errors/errorHandler");
 
@@ -23,8 +24,8 @@ app.use("/ping", (_request: any, response: any, _next: any) => {
 });
 
 app.use("/auth", authRouter);
-app.use("/dashboard", dashboardRouter);
-app.use("/characters", charactersRouter);
+app.use("/dashboard", authorization, dashboardRouter);
+app.use("/characters", authorization, charactersRouter);
 app.use(notFound);
 app.use(errorHandler);
 
