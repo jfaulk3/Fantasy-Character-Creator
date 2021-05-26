@@ -13,10 +13,9 @@ interface characters {
   character_image_url: string;
 }
 
-function Dashboard() {
+function Characters() {
   const [name, setName] = useState("");
   const [characters, setCharacters] = useState([] as characters[]);
-
   async function getName() {
     try {
       const response = await fetch("http://localhost:5000/dashboard/users", {
@@ -56,7 +55,7 @@ function Dashboard() {
 
   return (
     <React.Fragment>
-      {/* <h2>Dashboard {name}</h2> */}
+      <h2>Dashboard {name}</h2>
       <section className="card-list">
         {characters.map((character) => {
           return (
@@ -78,4 +77,4 @@ function Dashboard() {
   );
 }
 
-export default Dashboard;
+export default Characters;

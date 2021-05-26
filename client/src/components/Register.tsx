@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import { Link } from "react-router-dom";
 
 interface props {
   setAuth: (boolean: boolean) => void;
@@ -54,32 +53,33 @@ function Register({ setAuth }: props) {
 
   return (
     <React.Fragment>
-      <h1>Register</h1>
-      <form onSubmit={onSubmitForm}>
-        <input
-          type="email"
-          name="email"
-          placeholder="email"
-          value={email}
-          onChange={(e) => onChange(e)}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="password"
-          value={password}
-          onChange={(e) => onChange(e)}
-        />
-        <input
-          type="text"
-          name="name"
-          placeholder="name"
-          value={name}
-          onChange={(e) => onChange(e)}
-        />
-        <button>Submit</button>
-      </form>
-      <Link to="/login">Login</Link>
+      <div className="user-info">
+        <h2>Register</h2>
+        <form onSubmit={onSubmitForm}>
+          <input
+            type="email"
+            name="email"
+            placeholder="email"
+            value={email}
+            onChange={(e) => onChange(e)}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => onChange(e)}
+          />
+          <input
+            type="text"
+            name="name"
+            placeholder="name"
+            value={name}
+            onChange={(e) => onChange(e)}
+          />
+          <button>Submit</button>
+        </form>
+      </div>
     </React.Fragment>
   );
 }

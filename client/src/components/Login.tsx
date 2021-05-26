@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
 
 interface props {
@@ -46,29 +45,30 @@ function Login({ setAuth }: props) {
 
   return (
     <React.Fragment>
-      <h1>Login</h1>
-      <form onSubmit={onSubmitForm}>
-        <input
-          type="email"
-          name="email"
-          placeholder="email"
-          value={email}
-          onChange={(e) => {
-            onChange(e);
-          }}
-        />
-        <input
-          type="password"
-          name="password"
-          placeholder="password"
-          value={password}
-          onChange={(e) => {
-            onChange(e);
-          }}
-        />
-        <button>Submit</button>
-      </form>
-      <Link to="/register">Register</Link>
+      <div className="user-info">
+        <h2>Login</h2>
+        <form onSubmit={onSubmitForm}>
+          <input
+            type="email"
+            name="email"
+            placeholder="email"
+            value={email}
+            onChange={(e) => {
+              onChange(e);
+            }}
+          />
+          <input
+            type="password"
+            name="password"
+            placeholder="password"
+            value={password}
+            onChange={(e) => {
+              onChange(e);
+            }}
+          />
+          <button>Submit</button>
+        </form>
+      </div>
     </React.Fragment>
   );
 }

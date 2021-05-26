@@ -1,19 +1,16 @@
 import React, { useState, useEffect } from "react";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-} from "react-router-dom";
+import { Switch, Route, Redirect } from "react-router-dom";
 import "./App.scss";
 
 //components
 import Dashboard from "./components/Dashboard";
 import Login from "./components/Login";
 import Register from "./components/Register";
-import Home from "./components/Home";
+import Header from "./components/Header";
+import NotFound from "./components/NotFound";
+import Characters from "./components/Dashboard/Characters";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -39,14 +36,27 @@ function App() {
 
   useEffect(() => {
     isAuth();
-  });
+  }, []);
 
   return (
-    <Router>
+    <React.Fragment>
       <ToastContainer />
       <div className="container">
-        <Home />
+        <Header setAuth={setAuth} />
         <Switch>
+          <Route
+            exact
+            path="/dashboard"
+            render={(props) =>
+              isAuthenticated ? <Dashboard /> : <Redirect to="login" />
+            }
+          />
+          <Route
+            path="/characters"
+            render={(props) =>
+              isAuthenticated ? <Characters /> : <Redirect to="login" />
+            }
+          />
           <Route
             exact
             path="/login"
@@ -69,20 +79,12 @@ function App() {
               )
             }
           />
-          <Route
-            exact
-            path="/dashboard"
-            render={(props) =>
-              isAuthenticated ? (
-                <Dashboard {...props} setAuth={setAuth} />
-              ) : (
-                <Redirect to="login" />
-              )
-            }
-          />
+          <Route>
+            <NotFound />
+          </Route>
         </Switch>
       </div>
-    </Router>
+    </React.Fragment>
   );
 }
 

@@ -1,6 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&display=swap");
-
+$tablet-width: 768px;
+$desktop-width: 1024px;
 $grayscale-value: 75%;
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
 
 * {
   margin: 0px;
@@ -8,7 +21,7 @@ $grayscale-value: 75%;
   box-sizing: border-box;
 }
 
-html {
+body {
   background: url("./images/johannes-plenio-1vzLW-ihJaM-unsplash.jpg") no-repeat
     center center fixed;
   -webkit-background-size: cover;
@@ -20,26 +33,37 @@ html {
   -o-filter: grayscale($grayscale-value);
   -ms-filter: grayscale($grayscale-value);
   filter: grayscale($grayscale-value);
-}
 
-body {
-  padding: 0;
-  margin: 0;
-  background-color: #17141d;
-  color: white;
-  font-family: "DM Mono", monospace;
-}
+  .container {
+    display: grid;
+    max-width: 100%;
+    @include desktop() {
+      max-width: 70%;
+    }
+    margin: 0 auto;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(3, minmax(100px, auto));
+    grid-gap: 10px;
 
-header {
-  color: white;
-  background-color: blue;
-}
+    header {
+      color: white;
+      background-color: blue;
+      grid-column: span 13;
+    }
 
-.container {
-  display: grid;
-}
+    .user-info {
+      text-align: center;
+      color: #0000ff;
+      grid-column: 6;
+    }
 
-a {
-  text-decoration: none;
-  color: gold;
+    a {
+      text-decoration: none;
+      color: gold;
+    }
+
+    .image-credit {
+      background-color: #17141d;
+    }
+  }
 }
