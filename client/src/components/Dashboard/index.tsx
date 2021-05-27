@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Route, Switch } from "react-router-dom";
 import "./Dashboard.scss";
+import Characters from "./Characters";
+import SingleCharacter from "./SingleCharacter";
+import NotFound from "../NotFound";
 
 interface characters {
   character_id: number;
@@ -56,24 +59,19 @@ function Dashboard() {
 
   return (
     <React.Fragment>
-      {/* <h2>Dashboard {name}</h2> */}
-      <section className="card-list">
-        {characters.map((character) => {
-          return (
-            <article key={character.character_id} className="card">
-              <h3 className="card-header">{character.character_name}</h3>
-              <p>{character.character_age}</p>
-              <p>{character.character_gender}</p>
-              <p>{character.character_birthday}</p>
-              <p>{character.character_birthplace}</p>
-              <p>{character.character_summary}</p>
-              <Link to={`dashboard/characters/${character.character_id}`}>
-                View Card
-              </Link>
-            </article>
-          );
-        })}
-      </section>
+      <Link to="/dashboard/characters">Characters</Link>
+      <Link to="/dashboard/characters/new">Add a new character</Link>
+      <Switch>
+        <Route exact path="/dashboard/characters">
+          <Characters />
+        </Route>
+        <Route path="/dashboard/characters/:characterId">
+          <SingleCharacter />
+        </Route>
+        <Route>
+          <NotFound />
+        </Route>
+      </Switch>
     </React.Fragment>
   );
 }

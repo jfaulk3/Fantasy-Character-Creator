@@ -51,11 +51,8 @@ function Characters() {
     getCharacters();
   }, []);
 
-  console.log("Characters: ", characters);
-
   return (
     <React.Fragment>
-      <h2>Dashboard {name}</h2>
       <section className="card-list">
         {characters.map((character) => {
           return (
@@ -66,7 +63,7 @@ function Characters() {
               <p>{character.character_birthday}</p>
               <p>{character.character_birthplace}</p>
               <p>{character.character_summary}</p>
-              <Link to={`dashboard/characters/${character.character_id}`}>
+              <Link to={`/dashboard/characters/${character.character_id}`}>
                 View Card
               </Link>
             </article>

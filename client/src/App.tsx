@@ -10,7 +10,7 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
-import Characters from "./components/Dashboard/Characters";
+import Home from "./components/Home";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -46,15 +46,15 @@ function App() {
         <Switch>
           <Route
             exact
-            path="/dashboard"
+            path="/"
             render={(props) =>
-              isAuthenticated ? <Dashboard /> : <Redirect to="login" />
+              !isAuthenticated ? <Home /> : <Redirect to="/dashboard" />
             }
           />
           <Route
-            path="/characters"
+            path="/dashboard"
             render={(props) =>
-              isAuthenticated ? <Characters /> : <Redirect to="login" />
+              isAuthenticated ? <Dashboard /> : <Redirect to="/" />
             }
           />
           <Route
