@@ -1,0 +1,56 @@
+$tablet-width: 768px;
+$desktop-width: 1024px;
+$grayscale-value: 75%;
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
+.logReg-grid {
+  grid-column: span 13;
+  grid-row: 3;
+  display: grid;
+  width: 90%;
+  justify-self: center;
+  grid-template-columns: 1fr 1fr;
+  padding: 20px;
+  background: rgba(255, 228, 196, 0.5);
+  filter: grayscale(80%);
+  justify-items: center;
+
+  @include desktop() {
+    width: auto;
+    margin: 100px auto;
+  }
+  h2 {
+    color: black;
+    grid-column: span 2;
+    text-align: center;
+  }
+  form {
+    grid-column: span 2;
+    margin: 0 auto;
+    input {
+      width: 100%;
+      padding: 5px 0px;
+      margin: 3px 0px;
+    }
+    button {
+      width: 100%;
+    }
+  }
+  .login-help {
+    grid-column: span 2;
+    a {
+      color: red;
+    }
+  }
+}

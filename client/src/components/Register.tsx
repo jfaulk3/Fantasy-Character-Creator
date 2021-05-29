@@ -53,27 +53,27 @@ function Register({ setAuth }: props) {
 
   return (
     <React.Fragment>
-      <div className="user-info">
+      <div className="logReg-grid">
         <h2>Register</h2>
         <form onSubmit={onSubmitForm}>
           <input
             type="email"
             name="email"
-            placeholder="email"
+            placeholder="Email"
             value={email}
             onChange={(e) => onChange(e)}
           />
           <input
             type="password"
             name="password"
-            placeholder="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => onChange(e)}
           />
           <input
             type="text"
             name="name"
-            placeholder="name"
+            placeholder="Username"
             value={name}
             onChange={(e) => onChange(e)}
           />

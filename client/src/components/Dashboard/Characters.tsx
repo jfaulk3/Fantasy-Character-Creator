@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Dashboard.scss";
 
 interface characters {
   character_id: number;
@@ -14,22 +13,7 @@ interface characters {
 }
 
 function Characters() {
-  const [name, setName] = useState("");
   const [characters, setCharacters] = useState([] as characters[]);
-  async function getName() {
-    try {
-      const response = await fetch("http://localhost:5000/dashboard/users", {
-        method: "GET",
-        headers: { token: localStorage.token },
-      });
-
-      const parseRes = await response.json();
-
-      setName(parseRes.data.user_name);
-    } catch (error) {
-      console.error(error.message);
-    }
-  }
 
   async function getCharacters() {
     try {
@@ -47,7 +31,6 @@ function Characters() {
   }
 
   useEffect(() => {
-    getName();
     getCharacters();
   }, []);
 

@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link, Route, Switch } from "react-router-dom";
-import "./Dashboard.scss";
+import "../../styles/Dashboard.scss";
 import Characters from "./Characters";
 import SingleCharacter from "./SingleCharacter";
-import NotFound from "../NotFound";
 
 interface characters {
   character_id: number;
@@ -59,6 +58,12 @@ function Dashboard() {
 
   return (
     <React.Fragment>
+      <h2>
+        {name && name[name.length - 1].toLowerCase() !== "s"
+          ? `${name}'s`
+          : `${name}'`}{" "}
+        Dashboard
+      </h2>
       <Link to="/dashboard/characters">Characters</Link>
       <Link to="/dashboard/characters/new">Add a new character</Link>
       <Switch>
@@ -67,9 +72,6 @@ function Dashboard() {
         </Route>
         <Route path="/dashboard/characters/:characterId">
           <SingleCharacter />
-        </Route>
-        <Route>
-          <NotFound />
         </Route>
       </Switch>
     </React.Fragment>

@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
+import "../styles/LogReg.scss";
 
 interface props {
   setAuth: (boolean: boolean) => void;
@@ -45,13 +47,13 @@ function Login({ setAuth }: props) {
 
   return (
     <React.Fragment>
-      <div className="user-info">
+      <div className="logReg-grid">
         <h2>Login</h2>
         <form onSubmit={onSubmitForm}>
           <input
             type="email"
             name="email"
-            placeholder="email"
+            placeholder="Email"
             value={email}
             onChange={(e) => {
               onChange(e);
@@ -60,7 +62,7 @@ function Login({ setAuth }: props) {
           <input
             type="password"
             name="password"
-            placeholder="password"
+            placeholder="Password"
             value={password}
             onChange={(e) => {
               onChange(e);
@@ -68,6 +70,11 @@ function Login({ setAuth }: props) {
           />
           <button>Submit</button>
         </form>
+        <div className="login-help">
+          <p>
+            Forgot your password? <Link to="#">Click here to reset it</Link>
+          </p>
+        </div>
       </div>
     </React.Fragment>
   );

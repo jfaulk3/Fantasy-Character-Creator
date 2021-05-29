@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
-import "./Dashboard.scss";
 
 interface characters {
   character_id: number;

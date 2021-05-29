@@ -42,28 +42,45 @@ body {
     }
     margin: 0 auto;
     grid-template-columns: repeat(12, 1fr);
-    grid-template-rows: repeat(3, minmax(100px, auto));
+    grid-template-rows: repeat(5, auto);
     grid-gap: 10px;
 
     header {
-      color: white;
-      background-color: blue;
+      color: #afaf27;
+      background-color: #191970;
       grid-column: span 13;
-    }
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
 
-    .user-info {
-      text-align: center;
-      color: #0000ff;
-      grid-column: 6;
+      #appTitle {
+        grid-column: span 13;
+        @include tablet() {
+          text-align: center;
+        }
+        @include desktop() {
+          grid-column: span 10;
+        }
+      }
+
+      .userLog {
+        grid-column: span 6;
+        padding: 8px;
+        @include desktop() {
+          grid-column: span 1;
+          grid-column-end: auto;
+          padding: 5px;
+        }
+      }
+
+      .image-credit {
+        grid-column: span 13;
+        background-color: #17141d;
+      }
     }
 
     a {
       text-decoration: none;
       color: gold;
-    }
-
-    .image-credit {
-      background-color: #17141d;
     }
   }
 }

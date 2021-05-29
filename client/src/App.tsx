@@ -10,7 +10,6 @@ import Login from "./components/Login";
 import Register from "./components/Register";
 import Header from "./components/Header";
 import NotFound from "./components/NotFound";
-import Home from "./components/Home";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -42,13 +41,17 @@ function App() {
     <React.Fragment>
       <ToastContainer />
       <div className="container">
-        <Header setAuth={setAuth} />
+        <Header isAuthenticated={isAuthenticated} setAuth={setAuth} />
         <Switch>
           <Route
             exact
             path="/"
             render={(props) =>
-              !isAuthenticated ? <Home /> : <Redirect to="/dashboard" />
+              !isAuthenticated ? (
+                <Login {...props} setAuth={setAuth} />
+              ) : (
+                <Redirect to="/dashboard" />
+              )
             }
           />
           <Route
